@@ -156,21 +156,23 @@ export function AccountPage() {
                     )}
                   </div>
 
-                  <div>
-                    <label className="mb-1.5 block text-xs font-bold text-white/90" htmlFor="account-email">{t("Email address")}</label>
-                    <input
-                      autoComplete="email"
-                      aria-describedby={profileForm.formState.errors.email ? "account-email-error" : undefined}
-                      aria-invalid={Boolean(profileForm.formState.errors.email)}
-                      className="h-11 w-full rounded-sm border border-white/20 bg-[#230c5d] px-3 text-sm text-white outline-none focus:border-yellow-200"
-                      id="account-email"
-                      type="email"
-                      {...profileForm.register("email")}
-                    />
-                    {profileForm.formState.errors.email?.message && (
-                      <p className="mt-1 text-xs text-rose-200" id="account-email-error">{t(profileForm.formState.errors.email.message)}</p>
-                    )}
-                  </div>
+                  {/*
+<div>
+  <label className="mb-1.5 block text-xs font-bold text-white/90" htmlFor="account-email">{t("Email address")}</label>
+  <input
+    autoComplete="email"
+    aria-describedby={profileForm.formState.errors.email ? "account-email-error" : undefined}
+    aria-invalid={Boolean(profileForm.formState.errors.email)}
+    className="h-11 w-full rounded-sm border border-white/20 bg-[#230c5d] px-3 text-sm text-white outline-none focus:border-yellow-200"
+    id="account-email"
+    type="email"
+    {...profileForm.register("email")}
+  />
+  {profileForm.formState.errors.email?.message && (
+    <p className="mt-1 text-xs text-rose-200" id="account-email-error">{t(profileForm.formState.errors.email.message)}</p>
+  )}
+</div>
+*/}
 
                   <button
                     className="inline-flex h-11 w-full items-center justify-center rounded-sm bg-yellow-300 px-4 text-sm font-extrabold text-[#24103f] transition hover:bg-yellow-200 disabled:cursor-wait disabled:opacity-60 sm:w-auto sm:min-w-40"
