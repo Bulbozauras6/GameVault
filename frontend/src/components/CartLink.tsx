@@ -1,4 +1,4 @@
-import { Gamepad2, ShoppingCart, X } from "lucide-react";
+import { Gamepad2, ShoppingCart, Trash2, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { LoadingSpinner } from "./LoadingSpinner";
@@ -18,9 +18,12 @@ export function CartLink() {
   const cart = useCartStore((state) => state.cart);
   const itemCount = cart?.item_count ?? 0;
   const loading = useCartStore((state) => state.loading);
+  const pending = useCartStore((state) => state.pending);
   const error = useCartStore((state) => state.error);
   const miniCartOpen = useCartStore((state) => state.miniCartOpen);
   const loadCart = useCartStore((state) => state.loadCart);
+  const removeItem = useCartStore((state) => state.removeItem);
+  const clearError = useCartStore((state) => state.clearError);
   const toggleMiniCart = useCartStore((state) => state.toggleMiniCart);
   const closeMiniCart = useCartStore((state) => state.closeMiniCart);
 
@@ -166,7 +169,20 @@ export function CartLink() {
                   </div>
                   <div className="grid min-w-0 flex-1 grid-cols-[minmax(0,1fr)_auto] gap-x-2">
                     <div className="min-w-0">
-                      <p className="line-clamp-2 text-xs font-bold leading-4">{item.product.title}</p>
+                      <div className="flex items-start gap-1.5">
+                        <p className="line-clamp-2 min-w-0 flex-1 text-xs font-bold leading-4">{item.product.title}</p>
+                        <button
+                          aria-busy={pending}
+                          aria-label={t("Remove {product} from cart", { product: item.product.title })}
+                          className="grid size-7 shrink-0 place-items-center rounded-sm text-white/55 transition hover:bg-rose-300/10 hover:text-rose-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-yellow-200 disabled:cursor-wait disabled:opacity-50"
+                          disabled={pending}
+                          onClick={() => void removeItem(item.id)}
+                          title={t("Remove {product} from cart", { product: item.product.title })}
+                          type="button"
+                        >
+                          <Trash2 aria-hidden="true" size={15} />
+                        </button>
+                      </div>
                       <p className="mt-1 truncate text-2xs text-white/65">
                         {[item.platform?.name, item.region?.name].filter(Boolean).join(" · ") || t("Digital game key")}
                       </p>
@@ -186,6 +202,20 @@ export function CartLink() {
                 </li>
               ))}
             </ul>
+          )}
+
+          {error && cart && (
+            <div className="mx-3 mt-2 flex items-start justify-between gap-2 rounded-sm border border-rose-200/30 bg-rose-300/10 px-2 py-2 text-xs text-rose-100">
+              <p role="alert">{t(error)}</p>
+              <button
+                aria-label={t("Dismiss cart error")}
+                className="shrink-0 font-bold"
+                onClick={clearError}
+                type="button"
+              >
+                ×
+              </button>
+            </div>
           )}
 
           <div className="border-t border-white/10 bg-white/[0.03] px-4 py-3">

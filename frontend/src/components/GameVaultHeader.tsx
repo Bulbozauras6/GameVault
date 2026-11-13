@@ -40,7 +40,7 @@ export function GameVaultHeader({ categories, platforms, categoriesLoading, cate
       </div>
 
       <nav aria-label={t("Marketplace navigation")} className="border-t border-white/10 bg-[#350879]">
-        <div className="mx-auto flex h-[42px] max-w-[1000px] items-center gap-1 overflow-x-auto px-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        <div className="mx-auto flex min-h-[42px] max-w-[1280px] items-center gap-1 overflow-x-auto px-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:h-auto md:flex-wrap md:overflow-visible md:py-1">
           <Link className="inline-flex shrink-0 items-center gap-2 pr-2 text-xs font-semibold text-white" to="/catalogue">
             <Menu size={17} /> {t("Categories")}
           </Link>

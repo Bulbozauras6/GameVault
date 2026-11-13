@@ -94,6 +94,7 @@ const translations: Record<string, Record<Language, string>> = {
   "Your cart couldn’t be loaded. Check your connection and try again.": { en: "Your cart couldn’t be loaded. Check your connection and try again.", lt: "Nepavyko įkelti krepšelio. Patikrinkite ryšį ir bandykite dar kartą." },
   "Retry": { en: "Retry", lt: "Bandyti dar kartą" },
   "Remove": { en: "Remove", lt: "Pašalinti" },
+  "Remove {product} from cart": { en: "Remove {product} from cart", lt: "Pašalinti „{product}“ iš krepšelio" },
   "Seller: {seller}": { en: "Seller: {seller}", lt: "Pardavėjas: {seller}" },
   "This offer is currently unavailable.": { en: "This offer is currently unavailable.", lt: "Šis pasiūlymas šiuo metu nepasiekiamas." },
   "Decrease {product} quantity": { en: "Decrease {product} quantity", lt: "Sumažinti „{product}“ kiekį" },
