@@ -10,8 +10,8 @@ ENV APP_ENV=production \
     PORT=10000
 
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends libcurl4-openssl-dev libonig-dev libpq-dev \
-    && docker-php-ext-install -j"$(nproc)" bcmath curl mbstring opcache pdo_pgsql \
+    && apt-get install -y --no-install-recommends libcurl4-openssl-dev libonig-dev libpq-dev libzip-dev unzip \
+    && docker-php-ext-install -j"$(nproc)" bcmath curl mbstring opcache pdo_pgsql zip \
     && a2enmod rewrite headers \
     && rm -rf /var/lib/apt/lists/*
 
