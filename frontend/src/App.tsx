@@ -137,7 +137,9 @@ function HomePage() {
           <FooterColumn heading={t("Discover")} links={[[t("Categories"), "/catalogue"], [t("Platforms"), "#platforms-heading"], [t("Search games"), "#marketplace-search"]]} />
           <FooterColumn heading="GameVault" links={[[t("Marketplace"), "#top"], [t("Featured sections"), "#deals"], [t("Back to top"), "#top"]]} />
         </div>
-        <div className="border-t border-white/[0.06] py-3 text-center text-2xs text-[#77728a]">© {new Date().getFullYear()} GameVault</div>
+        <div className="border-t border-white/[0.06] py-3 text-center text-2xs text-[#77728a]">
+          © {new Date().getFullYear()} GamesVault · Made by Bulbozauras6 · Inspired by Eneba
+        </div>
       </footer>
     </div>
   );
