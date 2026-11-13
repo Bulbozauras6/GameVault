@@ -12,9 +12,10 @@ interface ProductCardProps {
   compareAtPrice?: string | null;
   platform?: string | null;
   region?: string | null;
+  showDescription?: boolean;
 }
 
-export function ProductCard({ product, badge, currency, price, compareAtPrice, platform, region }: ProductCardProps) {
+export function ProductCard({ product, badge, currency, price, compareAtPrice, platform, region, showDescription = false }: ProductCardProps) {
   const { t } = useTranslation();
   const [imageFailed, setImageFailed] = useState(false);
   const image = product.images?.find((item) => item.is_primary) ?? product.images?.[0];
@@ -67,6 +68,9 @@ export function ProductCard({ product, badge, currency, price, compareAtPrice, p
 
       <div className="p-2.5">
         <h3 className="line-clamp-2 min-h-9 text-xs font-semibold leading-[1.15rem] text-[#f0edf8] sm:text-sm">{product.title}</h3>
+        {showDescription && product.short_description && (
+          <p className="mt-1 line-clamp-2 min-h-8 text-2xs leading-4 text-white/70">{product.short_description}</p>
+        )}
         {(platformLabel || regionLabel) && (
           <div className="mt-1 flex min-h-5 flex-wrap gap-1">
             {platformLabel && <span className="max-w-full truncate rounded bg-white/[0.10] px-1.5 py-0.5 text-2xs font-semibold text-white/85">{platformLabel}</span>}

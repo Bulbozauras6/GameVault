@@ -30,6 +30,7 @@ export function DealsSection({ section }: DealsSectionProps) {
                 platform={offer.platform?.name}
                 region={offer.region?.name}
                 product={product}
+                showDescription
               />
             </div>
           ))}

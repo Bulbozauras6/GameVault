@@ -27,6 +27,7 @@ export function CuratedSection({ section }: CuratedSectionProps) {
               platform={offer?.platform?.name}
               region={offer?.region?.name}
               product={product}
+              showDescription
             />
           </div>
         ))}
