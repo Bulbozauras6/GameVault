@@ -157,7 +157,7 @@ export function AccountPage() {
                   </div>
 
                   <div>
-                    <label className="mb-1.5 block text-xs font-bold text-white/90" htmlFor="account-email">{t("Email address")}</label>
+                    
                     <input
                       autoComplete="email"
                       aria-describedby={profileForm.formState.errors.email ? "account-email-error" : undefined}
