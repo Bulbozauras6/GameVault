@@ -28,13 +28,18 @@ WORKDIR /var/www/html
 
 COPY . .
 
-RUN COMPOSER_ALLOW_SUPERUSER=1 composer install \
+RUN php --version \
+    && php -m \
+    && composer --version \
+    && COMPOSER_ALLOW_SUPERUSER=1 composer check-platform-reqs --lock --no-dev -vvv 2>&1 \
+    && COMPOSER_ALLOW_SUPERUSER=1 composer install \
+        -vvv \
         --no-dev \
         --no-interaction \
         --no-progress \
         --prefer-dist \
-        --optimize-autoloader \
-    && COMPOSER_ALLOW_SUPERUSER=1 composer check-platform-reqs --no-dev \
+        --optimize-autoloader 2>&1 \
+    && COMPOSER_ALLOW_SUPERUSER=1 composer check-platform-reqs --no-dev -vvv 2>&1 \
     && mkdir -p \
         storage/framework/cache/data \
         storage/framework/sessions \
