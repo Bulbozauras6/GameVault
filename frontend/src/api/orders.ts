@@ -44,16 +44,16 @@ interface OrdersResponse {
 }
 
 export async function createCheckout(): Promise<GameOrder> {
-  const response = await api.post<OrderResponse>("/api/checkout");
+  const response = await api.post<OrderResponse>("/checkout");
   return response.data.data;
 }
 
 export async function fetchOrder(orderId: number): Promise<GameOrder> {
-  const response = await api.get<OrderResponse>(`/api/orders/${orderId}`);
+  const response = await api.get<OrderResponse>(`/orders/${orderId}`);
   return response.data.data;
 }
 
 export async function fetchOrders(): Promise<OrderSummary[]> {
-  const response = await api.get<OrdersResponse>("/api/orders");
+  const response = await api.get<OrdersResponse>("/orders");
   return response.data.data;
 }

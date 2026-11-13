@@ -2,11 +2,13 @@
 import axios from "axios";
 
 const localApiHost = window.location.hostname === "127.0.0.1" ? "127.0.0.1" : "localhost";
-const apiBaseUrl = import.meta.env.VITE_API_BASE_URL?.trim()
-    || (import.meta.env.DEV ? `http://${localApiHost}:8000` : undefined);
+const localApiOrigin = `http://${localApiHost}:8000`;
+const configuredApiBaseUrl = import.meta.env.VITE_API_BASE_URL?.trim();
+const apiBaseUrl = configuredApiBaseUrl
+    || (import.meta.env.DEV ? `${localApiOrigin}/api` : "/api");
 
-if (!apiBaseUrl) {
-    throw new Error("VITE_API_BASE_URL must be configured for production.");
+if (import.meta.env.PROD && (!apiBaseUrl.startsWith("/") || apiBaseUrl.startsWith("//"))) {
+    throw new Error("VITE_API_BASE_URL must be a same-origin path in production.");
 }
 
 const api = axios.create({
@@ -18,5 +20,11 @@ const api = axios.create({
         "Content-Type": "application/json",
     },
 });
+
+export async function initializeCsrfCookie(): Promise<void> {
+    await api.get("/sanctum/csrf-cookie", {
+        baseURL: import.meta.env.DEV ? localApiOrigin : "",
+    });
+}
 
 export default api;

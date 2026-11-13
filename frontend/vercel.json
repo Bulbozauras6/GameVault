@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "https://gamevault-uxkq.onrender.com/api/:path*"
+    },
+    {
+      "source": "/sanctum/:path*",
+      "destination": "https://gamevault-uxkq.onrender.com/sanctum/:path*"
+    }
+  ]
+}

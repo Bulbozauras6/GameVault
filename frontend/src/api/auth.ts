@@ -1,4 +1,4 @@
-import api from "./client";
+import api, { initializeCsrfCookie } from "./client";
 
 export interface AuthUser {
   id: number;
@@ -30,32 +30,32 @@ export interface PasswordChangeInput {
 }
 
 export async function fetchCurrentUser(): Promise<AuthUser> {
-  const response = await api.get<{ data: AuthUser }>("/api/user");
+  const response = await api.get<{ data: AuthUser }>("/user");
   return response.data.data;
 }
 
 export async function updateUserProfile(input: ProfileUpdateInput): Promise<AuthUser> {
-  const response = await api.put<{ data: AuthUser }>("/api/user", input);
+  const response = await api.put<{ data: AuthUser }>("/user", input);
   return response.data.data;
 }
 
 export async function changeUserPassword(input: PasswordChangeInput): Promise<void> {
-  await api.put("/api/user/password", input);
+  await api.put("/user/password", input);
 }
 
 export async function registerUser(input: RegistrationInput): Promise<AuthUser> {
-  await api.get("/sanctum/csrf-cookie");
-  const response = await api.post<{ data: AuthUser }>("/api/register", input);
+  await initializeCsrfCookie();
+  const response = await api.post<{ data: AuthUser }>("/register", input);
   return response.data.data;
 }
 
 export async function loginUser(input: LoginInput): Promise<AuthUser> {
-  await api.get("/sanctum/csrf-cookie");
-  const response = await api.post<{ data: AuthUser }>("/api/login", input);
+  await initializeCsrfCookie();
+  const response = await api.post<{ data: AuthUser }>("/login", input);
   return response.data.data;
 }
 
 export async function logoutUser(): Promise<void> {
-  await api.get("/sanctum/csrf-cookie");
-  await api.post("/api/logout");
+  await initializeCsrfCookie();
+  await api.post("/logout");
 }

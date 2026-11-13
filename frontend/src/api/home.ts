@@ -2,22 +2,22 @@ import api from "./client";
 import type { Category, HomepageResponse, MarketplaceProduct, Platform, ProductDetail, ProductFilters, ProductPage, ProductsResponse, Region } from "./types";
 
 export async function fetchHomepage(): Promise<HomepageResponse> {
-  const response = await api.get<{ data: HomepageResponse }>("/api/home");
+  const response = await api.get<{ data: HomepageResponse }>("/home");
   return response.data.data;
 }
 
 export async function fetchCategories(): Promise<Category[]> {
-  const response = await api.get<{ data: Category[] }>("/api/categories");
+  const response = await api.get<{ data: Category[] }>("/categories");
   return response.data.data;
 }
 
 export async function fetchPlatforms(): Promise<Platform[]> {
-  const response = await api.get<{ data: Platform[] }>("/api/platforms");
+  const response = await api.get<{ data: Platform[] }>("/platforms");
   return response.data.data;
 }
 
 export async function fetchRegions(): Promise<Region[]> {
-  const response = await api.get<{ data: Region[] }>("/api/regions");
+  const response = await api.get<{ data: Region[] }>("/regions");
   return response.data.data;
 }
 
@@ -27,7 +27,7 @@ export async function fetchProducts(filters: ProductFilters = {}): Promise<Marke
 }
 
 export async function fetchProductPage(filters: ProductFilters = {}): Promise<ProductPage> {
-  const response = await api.get<ProductsResponse>("/api/products", {
+  const response = await api.get<ProductsResponse>("/products", {
     params: { per_page: 6, ...filters },
   });
   return {
@@ -39,6 +39,6 @@ export async function fetchProductPage(filters: ProductFilters = {}): Promise<Pr
 }
 
 export async function fetchProduct(slug: string): Promise<ProductDetail> {
-  const response = await api.get<{ data: ProductDetail }>(`/api/products/${encodeURIComponent(slug)}`);
+  const response = await api.get<{ data: ProductDetail }>(`/products/${encodeURIComponent(slug)}`);
   return response.data.data;
 }
