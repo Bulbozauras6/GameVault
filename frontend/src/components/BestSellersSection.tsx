@@ -21,7 +21,7 @@ export function BestSellersSection({ section }: BestSellersSectionProps) {
       {items.length > 0 ? (
         <ProductRail label="best sellers">
           {items.map(({ product, units_sold }) => (
-            <div className="w-[calc(50%-6px)] shrink-0 snap-start sm:w-[calc(33.333%-11px)] lg:w-[calc(20%-13px)]" key={product.id}>
+            <div className="w-[calc(50%-6px)] shrink-0 snap-start sm:w-[calc(50%-8px)] lg:w-[calc(25%-12px)]" key={product.id}>
               <ProductCard badge={units_sold > 0 ? t("Best seller") : undefined} product={product} />
             </div>
           ))}

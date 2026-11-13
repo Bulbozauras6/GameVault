@@ -18,7 +18,7 @@ export function CuratedSection({ section }: CuratedSectionProps) {
     <ProductSection id={`section-${section.key}`} subtitle={t("Selected from the GameVault catalogue")} title={section.title}>
       <ProductRail label={section.title}>
         {items.map(({ product, offer }) => (
-          <div className="w-[calc(50%-6px)] shrink-0 snap-start sm:w-[calc(33.333%-11px)] lg:w-[calc(20%-13px)]" key={`${section.key}-${offer?.id ?? product.id}`}>
+          <div className="w-[calc(50%-6px)] shrink-0 snap-start sm:w-[calc(50%-8px)] lg:w-[calc(25%-12px)]" key={`${section.key}-${offer?.id ?? product.id}`}>
             <ProductCard
               badge={offer ? t("Featured offer") : undefined}
               compareAtPrice={offer?.compare_at_price}

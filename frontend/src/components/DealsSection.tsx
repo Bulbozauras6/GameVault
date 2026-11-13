@@ -21,7 +21,7 @@ export function DealsSection({ section }: DealsSectionProps) {
       {items.length > 0 ? (
         <ProductRail label="deals">
           {items.map(({ product, offer }) => (
-            <div className="w-[calc(50%-6px)] shrink-0 snap-start sm:w-[calc(33.333%-11px)] lg:w-[calc(20%-13px)]" key={offer.id}>
+            <div className="w-[calc(50%-6px)] shrink-0 snap-start sm:w-[calc(50%-8px)] lg:w-[calc(25%-12px)]" key={offer.id}>
               <ProductCard
                 badge={t("Deal")}
                 currency={offer.currency}
