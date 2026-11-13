@@ -31,6 +31,14 @@ if ! php artisan migrate --force; then
     exit 1
 fi
 
+if [ "${RUN_DEMO_SEEDER:-false}" = "true" ]; then
+    printf '%s\n' 'Running the demo database seeder...' >&2
+    if ! php artisan db:seed --force; then
+        printf '%s\n' 'Demo database seeding failed; refusing to start Apache.' >&2
+        exit 1
+    fi
+fi
+
 if [ "$#" -eq 0 ]; then
     set -- apache2-foreground
 fi
